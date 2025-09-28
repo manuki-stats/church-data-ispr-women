@@ -1,0 +1,12 @@
+services:
+  shiny-women-app:
+    build: .
+    ports:
+      - "3839:3838"
+    volumes:
+      - ./final_ispr_women_table.csv:/srv/shiny-server/final_ispr_women_table.csv
+      - ./variable_abbreviations.csv:/srv/shiny-server/variable_abbreviations.csv
+      - ./app_women.R:/srv/shiny-server/app.R
+    restart: unless-stopped
+    environment:
+      - APPLICATION_LOGS_TO_STDOUT=true
